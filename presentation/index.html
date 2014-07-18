@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Intro to Go</title>
+
+    <meta name="description" content="Intro to Go">
+    <meta name="author" content="Intro to Go">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="lib/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="lib/reveal.js/css/theme/beige.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/reveal.js/lib/css/zenburn.css">
+
+    <link rel="stylesheet" href="css/devict.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="lib/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <!-- A markdown document can provide part of or the the entire presentation -->
+        <!-- With this setup three blank links separate slides. Two blanks separate nested "vertical" slides -->
+        
+        <section data-markdown>
+            <script type="text/template">
+# Intro to Go
+By Matt Conrad
+
+![DevICT](/img/devict-logo.png)
+            </script>
+        </section>
+
+        <section>
+            <h3>About Go</h3>
+            <p>Go is a <strike>new</strike> somewhat new-ish language developed by engineers at Google.</p>
+            <p class="fragment">It was intended to be a systems language--a modern version of C. It’s also attracted a lot of interest from Ruby and Python developers.</p>
+        </section>
+        
+        <section>
+            <p>Go has:</p>
+            <small>
+              <ul class="fragment">
+                <li>C-style syntax (curly braces define blocks)</li>
+                <li>static typing (often, automatically inferred)</li>
+                <li>garbage collection</li>
+                <li>modern data types like slices and maps (i.e. lists and dictionaries) and support for functional programming</li>
+                <li>not quite OOP: no objects, but structs are similar. implicit interfaces</li>
+                <li>a respectable (in some cases awesome) standard library for common tasks</li>
+                <li>full compilation to native binaries (no interpreter needed), and very quick compilation</li>
+              </ul>
+              <br />
+              <br />
+              <p class="fragment">It also has support for concurrent programming, in the form of goroutines (I think of these as very lightweight threads, but this is not technically correct) and channels w/ “select”.</p>
+              <p class="fragment">First class support for concurrency is the hook that gets a lot of people interested in Go (including yours truly).</p>
+              <p class="fragment">More on concurrency in Go later.</p>
+            </small>
+            <br />
+            <br />
+            <br />
+        </section>
+        
+        <section>
+            <h3>Getting Started</h3>
+            <p>Getting started with Go is super easy:</p>
+            <p class="fragment"><a href="http://tour.golang.org/">http://tour.golang.org/</a></p>
+            <p class="fragment">This is an interactive tutorial where you write Go code in your browser, you submit it to the server, and the server sends back the results of your compiled code. Pretty spiffy.</p>
+        </section>
+        
+        <section>
+            <h3>Noteworthy things that should be highlighted as part of examples, but not actually displayed as a second list:</h3>
+            <small>
+              <ul>
+                <li>Implicitly fulfilled interfaces (static ducks) (methods only)</li>
+                <li>Multiple return values from functions</li>
+                <li>Explicit error checking (no try/catch) (panic)</li>
+                <li>Only one looping construct (for)</li>
+                <li>Defer</li>
+                <li>Gofmt</li>
+                <li>No generics (magical append, though)</li>
+                <li>Pointers</li>
+              </ul>
+            </small>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </section>
+
+        <section>
+            <h3>Why you want to use Go</h3>
+            <ul>
+              <li>All the cool kids are using it, it's different but not TOO different</li>
+              <li>Quick and easy enough to use as your go-to scripting language <br />(go-to . . . ahahaha)</li>
+              <li>Concurrency is cool (you’ll have to get your head around it eventually)</li>
+              <li>Net/http and other power tools in the standard library</li>
+              <li>High performance (at least compared to interpreted languages)</li>
+              <li>Compiled binaries are nice for deployment</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Why you don't want to use Go</h3>
+            <ul>
+              <li>No exceptions</li>
+              <li>No generics (interface{} + reflection, bleah) (*)</li>
+              <li>Package management can get messy (no versioning) (*)</li>
+              <li>Idiosyncratic sometimes means annoying (import use, awkward string ops, error handling)</li>
+              <li>You don't like minimalist/TOOWTDI environments</li>
+            </ul>
+            <br />
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="lib/reveal.js/js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        //this is, unfortunately, important.
+        width: 1080,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
